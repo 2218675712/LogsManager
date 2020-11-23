@@ -10,11 +10,11 @@ namespace LogsManager.Model
 		public Info_User_Model()
 		{}
 		#region Model
-		private Guid _userld;
+		private Guid _userid;
 		private string _username;
 		private string _useravatar;
 		private int? _usersex;
-		private int? _userphone;
+		private string _userphone;
 		private string _accountnum;
 		private string _pwd;
 		private Guid _createuser;
@@ -26,10 +26,10 @@ namespace LogsManager.Model
 		/// <summary>
 		/// 用户ID
 		/// </summary>
-		public Guid UserlD
+		public Guid UserID
 		{
-			set{ _userld=value;}
-			get{return _userld;}
+			set{ _userid=value;}
+			get{return _userid;}
 		}
 		/// <summary>
 		/// 用户姓名
@@ -58,7 +58,7 @@ namespace LogsManager.Model
 		/// <summary>
 		/// 手机号
 		/// </summary>
-		public int? UserPhone
+		public string UserPhone
 		{
 			set{ _userphone=value;}
 			get{return _userphone;}

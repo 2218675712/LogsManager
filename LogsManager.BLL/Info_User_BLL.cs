@@ -18,9 +18,9 @@ namespace LogsManager.BLL
 		/// <summary>
 		/// 是否存在该记录
 		/// </summary>
-		public bool Exists(Guid UserlD)
+		public bool Exists(Guid UserID)
 		{
-			return dal.Exists(UserlD);
+			return dal.Exists(UserID);
 		}
 
 		/// <summary>
@@ -42,26 +42,26 @@ namespace LogsManager.BLL
 		/// <summary>
 		/// 删除一条数据
 		/// </summary>
-		public bool Delete(Guid UserlD)
+		public bool Delete(Guid UserID)
 		{
 			
-			return dal.Delete(UserlD);
+			return dal.Delete(UserID);
 		}
 		/// <summary>
 		/// 删除一条数据
 		/// </summary>
-		public bool DeleteList(string UserlDlist )
+		public bool DeleteList(string UserIDlist )
 		{
-			return dal.DeleteList(UserlDlist );
+			return dal.DeleteList(UserIDlist );
 		}
 
 		/// <summary>
 		/// 得到一个对象实体
 		/// </summary>
-		public Info_User_Model GetModel(Guid UserlD)
+		public Info_User_Model GetModel(Guid UserID)
 		{
 			
-			return dal.GetModel(UserlD);
+			return dal.GetModel(UserID);
 		}
 
 		/// <summary>

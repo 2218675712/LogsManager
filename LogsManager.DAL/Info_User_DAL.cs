@@ -19,14 +19,14 @@ namespace LogsManager.DAL
 		/// <summary>
 		/// 是否存在该记录
 		/// </summary>
-		public bool Exists(Guid UserlD)
+		public bool Exists(Guid UserID)
 		{
 			StringBuilder strSql=new StringBuilder();
 			strSql.Append("select count(1) from Info_User");
-			strSql.Append(" where UserlD=SQL2012UserlD ");
+			strSql.Append(" where UserID=SQL2012UserID ");
 			SqlParameter[] parameters = {
-					new SqlParameter("SQL2012UserlD", SqlDbType.UniqueIdentifier,16)			};
-			parameters[0].Value = UserlD;
+					new SqlParameter("SQL2012UserID", SqlDbType.UniqueIdentifier,16)			};
+			parameters[0].Value = UserID;
 
 			return DbHelperSQL.Exists(strSql.ToString(),parameters);
 		}
@@ -39,15 +39,15 @@ namespace LogsManager.DAL
 		{
 			StringBuilder strSql=new StringBuilder();
 			strSql.Append("insert into Info_User(");
-			strSql.Append("UserlD,UserName,UserAvatar,UserSex,UserPhone,AccountNum,Pwd,CreateUser,CreateTime,UpdateUser,UpdateTime,IsDelete,Remark)");
+			strSql.Append("UserID,UserName,UserAvatar,UserSex,UserPhone,AccountNum,Pwd,CreateUser,CreateTime,UpdateUser,UpdateTime,IsDelete,Remark)");
 			strSql.Append(" values (");
-			strSql.Append("SQL2012UserlD,SQL2012UserName,SQL2012UserAvatar,SQL2012UserSex,SQL2012UserPhone,SQL2012AccountNum,SQL2012Pwd,SQL2012CreateUser,SQL2012CreateTime,SQL2012UpdateUser,SQL2012UpdateTime,SQL2012IsDelete,SQL2012Remark)");
+			strSql.Append("SQL2012UserID,SQL2012UserName,SQL2012UserAvatar,SQL2012UserSex,SQL2012UserPhone,SQL2012AccountNum,SQL2012Pwd,SQL2012CreateUser,SQL2012CreateTime,SQL2012UpdateUser,SQL2012UpdateTime,SQL2012IsDelete,SQL2012Remark)");
 			SqlParameter[] parameters = {
-					new SqlParameter("SQL2012UserlD", SqlDbType.UniqueIdentifier,16),
+					new SqlParameter("SQL2012UserID", SqlDbType.UniqueIdentifier,16),
 					new SqlParameter("SQL2012UserName", SqlDbType.NVarChar,255),
 					new SqlParameter("SQL2012UserAvatar", SqlDbType.NVarChar,255),
 					new SqlParameter("SQL2012UserSex", SqlDbType.Int,4),
-					new SqlParameter("SQL2012UserPhone", SqlDbType.Int,4),
+					new SqlParameter("SQL2012UserPhone", SqlDbType.NVarChar,50),
 					new SqlParameter("SQL2012AccountNum", SqlDbType.NVarChar,50),
 					new SqlParameter("SQL2012Pwd", SqlDbType.NVarChar,255),
 					new SqlParameter("SQL2012CreateUser", SqlDbType.UniqueIdentifier,16),
@@ -99,12 +99,12 @@ namespace LogsManager.DAL
 			strSql.Append("UpdateTime=SQL2012UpdateTime,");
 			strSql.Append("IsDelete=SQL2012IsDelete,");
 			strSql.Append("Remark=SQL2012Remark");
-			strSql.Append(" where UserlD=SQL2012UserlD ");
+			strSql.Append(" where UserID=SQL2012UserID ");
 			SqlParameter[] parameters = {
 					new SqlParameter("SQL2012UserName", SqlDbType.NVarChar,255),
 					new SqlParameter("SQL2012UserAvatar", SqlDbType.NVarChar,255),
 					new SqlParameter("SQL2012UserSex", SqlDbType.Int,4),
-					new SqlParameter("SQL2012UserPhone", SqlDbType.Int,4),
+					new SqlParameter("SQL2012UserPhone", SqlDbType.NVarChar,50),
 					new SqlParameter("SQL2012AccountNum", SqlDbType.NVarChar,50),
 					new SqlParameter("SQL2012Pwd", SqlDbType.NVarChar,255),
 					new SqlParameter("SQL2012CreateUser", SqlDbType.UniqueIdentifier,16),
@@ -113,7 +113,7 @@ namespace LogsManager.DAL
 					new SqlParameter("SQL2012UpdateTime", SqlDbType.DateTime),
 					new SqlParameter("SQL2012IsDelete", SqlDbType.Bit,1),
 					new SqlParameter("SQL2012Remark", SqlDbType.NVarChar,50),
-					new SqlParameter("SQL2012UserlD", SqlDbType.UniqueIdentifier,16)};
+					new SqlParameter("SQL2012UserID", SqlDbType.UniqueIdentifier,16)};
 			parameters[0].Value = model.UserName;
 			parameters[1].Value = model.UserAvatar;
 			parameters[2].Value = model.UserSex;
@@ -126,7 +126,7 @@ namespace LogsManager.DAL
 			parameters[9].Value = model.UpdateTime;
 			parameters[10].Value = model.IsDelete;
 			parameters[11].Value = model.Remark;
-			parameters[12].Value = model.UserlD;
+			parameters[12].Value = model.UserID;
 
 			int rows=DbHelperSQL.ExecuteSql(strSql.ToString(),parameters);
 			if (rows > 0)
@@ -142,15 +142,15 @@ namespace LogsManager.DAL
 		/// <summary>
 		/// 删除一条数据
 		/// </summary>
-		public bool Delete(Guid UserlD)
+		public bool Delete(Guid UserID)
 		{
 			
 			StringBuilder strSql=new StringBuilder();
 			strSql.Append("delete from Info_User ");
-			strSql.Append(" where UserlD=SQL2012UserlD ");
+			strSql.Append(" where UserID=SQL2012UserID ");
 			SqlParameter[] parameters = {
-					new SqlParameter("SQL2012UserlD", SqlDbType.UniqueIdentifier,16)			};
-			parameters[0].Value = UserlD;
+					new SqlParameter("SQL2012UserID", SqlDbType.UniqueIdentifier,16)			};
+			parameters[0].Value = UserID;
 
 			int rows=DbHelperSQL.ExecuteSql(strSql.ToString(),parameters);
 			if (rows > 0)
@@ -165,11 +165,11 @@ namespace LogsManager.DAL
 		/// <summary>
 		/// 批量删除数据
 		/// </summary>
-		public bool DeleteList(string UserlDlist )
+		public bool DeleteList(string UserIDlist )
 		{
 			StringBuilder strSql=new StringBuilder();
 			strSql.Append("delete from Info_User ");
-			strSql.Append(" where UserlD in ("+UserlDlist + ")  ");
+			strSql.Append(" where UserID in ("+UserIDlist + ")  ");
 			int rows=DbHelperSQL.ExecuteSql(strSql.ToString());
 			if (rows > 0)
 			{
@@ -185,15 +185,15 @@ namespace LogsManager.DAL
 		/// <summary>
 		/// 得到一个对象实体
 		/// </summary>
-		public Info_User_Model GetModel(Guid UserlD)
+		public Info_User_Model GetModel(Guid UserID)
 		{
 			
 			StringBuilder strSql=new StringBuilder();
-			strSql.Append("select  top 1 UserlD,UserName,UserAvatar,UserSex,UserPhone,AccountNum,Pwd,CreateUser,CreateTime,UpdateUser,UpdateTime,IsDelete,Remark from Info_User ");
-			strSql.Append(" where UserlD=SQL2012UserlD ");
+			strSql.Append("select  top 1 UserID,UserName,UserAvatar,UserSex,UserPhone,AccountNum,Pwd,CreateUser,CreateTime,UpdateUser,UpdateTime,IsDelete,Remark from Info_User ");
+			strSql.Append(" where UserID=SQL2012UserID ");
 			SqlParameter[] parameters = {
-					new SqlParameter("SQL2012UserlD", SqlDbType.UniqueIdentifier,16)			};
-			parameters[0].Value = UserlD;
+					new SqlParameter("SQL2012UserID", SqlDbType.UniqueIdentifier,16)			};
+			parameters[0].Value = UserID;
 
 			Info_User_Model model=new Info_User_Model();
 			DataSet ds=DbHelperSQL.Query(strSql.ToString(),parameters);
@@ -216,9 +216,9 @@ namespace LogsManager.DAL
 			Info_User_Model model=new Info_User_Model();
 			if (row != null)
 			{
-				if(row["UserlD"]!=null && row["UserlD"].ToString()!="")
+				if(row["UserID"]!=null && row["UserID"].ToString()!="")
 				{
-					model.UserlD= new Guid(row["UserlD"].ToString());
+					model.UserID= new Guid(row["UserID"].ToString());
 				}
 				if(row["UserName"]!=null)
 				{
@@ -232,9 +232,9 @@ namespace LogsManager.DAL
 				{
 					model.UserSex=int.Parse(row["UserSex"].ToString());
 				}
-				if(row["UserPhone"]!=null && row["UserPhone"].ToString()!="")
+				if(row["UserPhone"]!=null)
 				{
-					model.UserPhone=int.Parse(row["UserPhone"].ToString());
+					model.UserPhone=row["UserPhone"].ToString();
 				}
 				if(row["AccountNum"]!=null)
 				{
@@ -285,7 +285,7 @@ namespace LogsManager.DAL
 		public DataSet GetList(string strWhere)
 		{
 			StringBuilder strSql=new StringBuilder();
-			strSql.Append("select UserlD,UserName,UserAvatar,UserSex,UserPhone,AccountNum,Pwd,CreateUser,CreateTime,UpdateUser,UpdateTime,IsDelete,Remark ");
+			strSql.Append("select UserID,UserName,UserAvatar,UserSex,UserPhone,AccountNum,Pwd,CreateUser,CreateTime,UpdateUser,UpdateTime,IsDelete,Remark ");
 			strSql.Append(" FROM Info_User ");
 			if(strWhere.Trim()!="")
 			{
@@ -305,7 +305,7 @@ namespace LogsManager.DAL
 			{
 				strSql.Append(" top "+Top.ToString());
 			}
-			strSql.Append(" UserlD,UserName,UserAvatar,UserSex,UserPhone,AccountNum,Pwd,CreateUser,CreateTime,UpdateUser,UpdateTime,IsDelete,Remark ");
+			strSql.Append(" UserID,UserName,UserAvatar,UserSex,UserPhone,AccountNum,Pwd,CreateUser,CreateTime,UpdateUser,UpdateTime,IsDelete,Remark ");
 			strSql.Append(" FROM Info_User ");
 			if(strWhere.Trim()!="")
 			{
@@ -350,7 +350,7 @@ namespace LogsManager.DAL
 			}
 			else
 			{
-				strSql.Append("order by T.UserlD desc");
+				strSql.Append("order by T.UserID desc");
 			}
 			strSql.Append(")AS Row, T.*  from Info_User T ");
 			if (!string.IsNullOrEmpty(strWhere.Trim()))
@@ -378,7 +378,7 @@ namespace LogsManager.DAL
 					new SqlParameter("SQL2012strWhere", SqlDbType.VarChar,1000),
 					};
 			parameters[0].Value = "Info_User";
-			parameters[1].Value = "UserlD";
+			parameters[1].Value = "UserID";
 			parameters[2].Value = PageSize;
 			parameters[3].Value = PageIndex;
 			parameters[4].Value = 0;
