@@ -24,13 +24,14 @@
             </div>
             <div class="mb-3 row">
                 <div class="col-auto">
+                    
                     <asp:Label ID="Label2" runat="server" Text="Label" class="col-form-label">用户密码</asp:Label>
                 </div>
                 <div class="col-auto">
                     <asp:TextBox ID="TextBox2" runat="server" TextMode="password" class="form-control"></asp:TextBox>
                 </div>
             </div>
-            <asp:Button ID="Button1" runat="server" Text="登录"  class="btn btn-primary offset-1" OnClick="Button1_OnClick" />
+            <asp:Button ID="Button1" runat="server" Text="登录"  class=" col-2 btn btn-primary offset-1 " OnClick="Button1_OnClick" />
         </div>
     </div>
 </form>

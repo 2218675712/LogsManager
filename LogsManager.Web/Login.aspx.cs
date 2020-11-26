@@ -26,12 +26,11 @@ namespace LogsManager.Web
             if (ds.Count>0)
             {
                Response.Write("<div class='alert alert-success' role='alert'>登录成功</div>"); 
-               Response.Redirect("LogList.aspx?AccountNum="+AccountNum);
+               Response.Redirect("LogList.aspx?AccountNum="+AccountNum+"&UserID="+ds.FirstOrDefault().UserID);
             }
             else
             {
-                Response.Write("<div class='alert alert-danger' role='alert'>登录失败</div>"); 
-
+                Response.Write("<div class='alert alert-danger' role='alert'>登录失败</div>");
             }
 
         }

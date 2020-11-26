@@ -23,9 +23,9 @@ namespace LogsManager.DAL
 		{
 			StringBuilder strSql=new StringBuilder();
 			strSql.Append("select count(1) from Info_User");
-			strSql.Append(" where UserID=SQL2012UserID ");
+			strSql.Append(" where UserID=@UserID ");
 			SqlParameter[] parameters = {
-					new SqlParameter("SQL2012UserID", SqlDbType.UniqueIdentifier,16)			};
+					new SqlParameter("@UserID", SqlDbType.UniqueIdentifier,16)			};
 			parameters[0].Value = UserID;
 
 			return DbHelperSQL.Exists(strSql.ToString(),parameters);
@@ -41,21 +41,21 @@ namespace LogsManager.DAL
 			strSql.Append("insert into Info_User(");
 			strSql.Append("UserID,UserName,UserAvatar,UserSex,UserPhone,AccountNum,Pwd,CreateUser,CreateTime,UpdateUser,UpdateTime,IsDelete,Remark)");
 			strSql.Append(" values (");
-			strSql.Append("SQL2012UserID,SQL2012UserName,SQL2012UserAvatar,SQL2012UserSex,SQL2012UserPhone,SQL2012AccountNum,SQL2012Pwd,SQL2012CreateUser,SQL2012CreateTime,SQL2012UpdateUser,SQL2012UpdateTime,SQL2012IsDelete,SQL2012Remark)");
+			strSql.Append("@UserID,@UserName,@UserAvatar,@UserSex,@UserPhone,@AccountNum,@Pwd,@CreateUser,@CreateTime,@UpdateUser,@UpdateTime,@IsDelete,@Remark)");
 			SqlParameter[] parameters = {
-					new SqlParameter("SQL2012UserID", SqlDbType.UniqueIdentifier,16),
-					new SqlParameter("SQL2012UserName", SqlDbType.NVarChar,255),
-					new SqlParameter("SQL2012UserAvatar", SqlDbType.NVarChar,255),
-					new SqlParameter("SQL2012UserSex", SqlDbType.Int,4),
-					new SqlParameter("SQL2012UserPhone", SqlDbType.NVarChar,50),
-					new SqlParameter("SQL2012AccountNum", SqlDbType.NVarChar,50),
-					new SqlParameter("SQL2012Pwd", SqlDbType.NVarChar,255),
-					new SqlParameter("SQL2012CreateUser", SqlDbType.UniqueIdentifier,16),
-					new SqlParameter("SQL2012CreateTime", SqlDbType.DateTime),
-					new SqlParameter("SQL2012UpdateUser", SqlDbType.UniqueIdentifier,16),
-					new SqlParameter("SQL2012UpdateTime", SqlDbType.DateTime),
-					new SqlParameter("SQL2012IsDelete", SqlDbType.Bit,1),
-					new SqlParameter("SQL2012Remark", SqlDbType.NVarChar,50)};
+					new SqlParameter("@UserID", SqlDbType.UniqueIdentifier,16),
+					new SqlParameter("@UserName", SqlDbType.NVarChar,255),
+					new SqlParameter("@UserAvatar", SqlDbType.NVarChar,255),
+					new SqlParameter("@UserSex", SqlDbType.Int,4),
+					new SqlParameter("@UserPhone", SqlDbType.NVarChar,50),
+					new SqlParameter("@AccountNum", SqlDbType.NVarChar,50),
+					new SqlParameter("@Pwd", SqlDbType.NVarChar,255),
+					new SqlParameter("@CreateUser", SqlDbType.UniqueIdentifier,16),
+					new SqlParameter("@CreateTime", SqlDbType.DateTime),
+					new SqlParameter("@UpdateUser", SqlDbType.UniqueIdentifier,16),
+					new SqlParameter("@UpdateTime", SqlDbType.DateTime),
+					new SqlParameter("@IsDelete", SqlDbType.Bit,1),
+					new SqlParameter("@Remark", SqlDbType.NVarChar,50)};
 			parameters[0].Value = Guid.NewGuid();
 			parameters[1].Value = model.UserName;
 			parameters[2].Value = model.UserAvatar;
@@ -87,33 +87,33 @@ namespace LogsManager.DAL
 		{
 			StringBuilder strSql=new StringBuilder();
 			strSql.Append("update Info_User set ");
-			strSql.Append("UserName=SQL2012UserName,");
-			strSql.Append("UserAvatar=SQL2012UserAvatar,");
-			strSql.Append("UserSex=SQL2012UserSex,");
-			strSql.Append("UserPhone=SQL2012UserPhone,");
-			strSql.Append("AccountNum=SQL2012AccountNum,");
-			strSql.Append("Pwd=SQL2012Pwd,");
-			strSql.Append("CreateUser=SQL2012CreateUser,");
-			strSql.Append("CreateTime=SQL2012CreateTime,");
-			strSql.Append("UpdateUser=SQL2012UpdateUser,");
-			strSql.Append("UpdateTime=SQL2012UpdateTime,");
-			strSql.Append("IsDelete=SQL2012IsDelete,");
-			strSql.Append("Remark=SQL2012Remark");
-			strSql.Append(" where UserID=SQL2012UserID ");
+			strSql.Append("UserName=@UserName,");
+			strSql.Append("UserAvatar=@UserAvatar,");
+			strSql.Append("UserSex=@UserSex,");
+			strSql.Append("UserPhone=@UserPhone,");
+			strSql.Append("AccountNum=@AccountNum,");
+			strSql.Append("Pwd=@Pwd,");
+			strSql.Append("CreateUser=@CreateUser,");
+			strSql.Append("CreateTime=@CreateTime,");
+			strSql.Append("UpdateUser=@UpdateUser,");
+			strSql.Append("UpdateTime=@UpdateTime,");
+			strSql.Append("IsDelete=@IsDelete,");
+			strSql.Append("Remark=@Remark");
+			strSql.Append(" where UserID=@UserID ");
 			SqlParameter[] parameters = {
-					new SqlParameter("SQL2012UserName", SqlDbType.NVarChar,255),
-					new SqlParameter("SQL2012UserAvatar", SqlDbType.NVarChar,255),
-					new SqlParameter("SQL2012UserSex", SqlDbType.Int,4),
-					new SqlParameter("SQL2012UserPhone", SqlDbType.NVarChar,50),
-					new SqlParameter("SQL2012AccountNum", SqlDbType.NVarChar,50),
-					new SqlParameter("SQL2012Pwd", SqlDbType.NVarChar,255),
-					new SqlParameter("SQL2012CreateUser", SqlDbType.UniqueIdentifier,16),
-					new SqlParameter("SQL2012CreateTime", SqlDbType.DateTime),
-					new SqlParameter("SQL2012UpdateUser", SqlDbType.UniqueIdentifier,16),
-					new SqlParameter("SQL2012UpdateTime", SqlDbType.DateTime),
-					new SqlParameter("SQL2012IsDelete", SqlDbType.Bit,1),
-					new SqlParameter("SQL2012Remark", SqlDbType.NVarChar,50),
-					new SqlParameter("SQL2012UserID", SqlDbType.UniqueIdentifier,16)};
+					new SqlParameter("@UserName", SqlDbType.NVarChar,255),
+					new SqlParameter("@UserAvatar", SqlDbType.NVarChar,255),
+					new SqlParameter("@UserSex", SqlDbType.Int,4),
+					new SqlParameter("@UserPhone", SqlDbType.NVarChar,50),
+					new SqlParameter("@AccountNum", SqlDbType.NVarChar,50),
+					new SqlParameter("@Pwd", SqlDbType.NVarChar,255),
+					new SqlParameter("@CreateUser", SqlDbType.UniqueIdentifier,16),
+					new SqlParameter("@CreateTime", SqlDbType.DateTime),
+					new SqlParameter("@UpdateUser", SqlDbType.UniqueIdentifier,16),
+					new SqlParameter("@UpdateTime", SqlDbType.DateTime),
+					new SqlParameter("@IsDelete", SqlDbType.Bit,1),
+					new SqlParameter("@Remark", SqlDbType.NVarChar,50),
+					new SqlParameter("@UserID", SqlDbType.UniqueIdentifier,16)};
 			parameters[0].Value = model.UserName;
 			parameters[1].Value = model.UserAvatar;
 			parameters[2].Value = model.UserSex;
@@ -147,9 +147,9 @@ namespace LogsManager.DAL
 			
 			StringBuilder strSql=new StringBuilder();
 			strSql.Append("delete from Info_User ");
-			strSql.Append(" where UserID=SQL2012UserID ");
+			strSql.Append(" where UserID=@UserID ");
 			SqlParameter[] parameters = {
-					new SqlParameter("SQL2012UserID", SqlDbType.UniqueIdentifier,16)			};
+					new SqlParameter("@UserID", SqlDbType.UniqueIdentifier,16)			};
 			parameters[0].Value = UserID;
 
 			int rows=DbHelperSQL.ExecuteSql(strSql.ToString(),parameters);
@@ -190,9 +190,9 @@ namespace LogsManager.DAL
 			
 			StringBuilder strSql=new StringBuilder();
 			strSql.Append("select  top 1 UserID,UserName,UserAvatar,UserSex,UserPhone,AccountNum,Pwd,CreateUser,CreateTime,UpdateUser,UpdateTime,IsDelete,Remark from Info_User ");
-			strSql.Append(" where UserID=SQL2012UserID ");
+			strSql.Append(" where UserID=@UserID ");
 			SqlParameter[] parameters = {
-					new SqlParameter("SQL2012UserID", SqlDbType.UniqueIdentifier,16)			};
+					new SqlParameter("@UserID", SqlDbType.UniqueIdentifier,16)			};
 			parameters[0].Value = UserID;
 
 			Info_User_Model model=new Info_User_Model();
@@ -369,13 +369,13 @@ namespace LogsManager.DAL
 		public DataSet GetList(int PageSize,int PageIndex,string strWhere)
 		{
 			SqlParameter[] parameters = {
-					new SqlParameter("SQL2012tblName", SqlDbType.VarChar, 255),
-					new SqlParameter("SQL2012fldName", SqlDbType.VarChar, 255),
-					new SqlParameter("SQL2012PageSize", SqlDbType.Int),
-					new SqlParameter("SQL2012PageIndex", SqlDbType.Int),
-					new SqlParameter("SQL2012IsReCount", SqlDbType.Bit),
-					new SqlParameter("SQL2012OrderType", SqlDbType.Bit),
-					new SqlParameter("SQL2012strWhere", SqlDbType.VarChar,1000),
+					new SqlParameter("@tblName", SqlDbType.VarChar, 255),
+					new SqlParameter("@fldName", SqlDbType.VarChar, 255),
+					new SqlParameter("@PageSize", SqlDbType.Int),
+					new SqlParameter("@PageIndex", SqlDbType.Int),
+					new SqlParameter("@IsReCount", SqlDbType.Bit),
+					new SqlParameter("@OrderType", SqlDbType.Bit),
+					new SqlParameter("@strWhere", SqlDbType.VarChar,1000),
 					};
 			parameters[0].Value = "Info_User";
 			parameters[1].Value = "UserID";

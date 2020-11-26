@@ -39,6 +39,7 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="Class1.cs" />
+        <Compile Include="Info_Comment_BLL.cs" />
         <Compile Include="Info_Logs_BLL.cs" />
         <Compile Include="Info_User_BLL.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />

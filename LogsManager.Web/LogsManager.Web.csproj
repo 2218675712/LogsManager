@@ -70,11 +70,19 @@
     <Content Include="css\bootstrap.min.css" />
     <Content Include="js\bootstrap.bundle.min.js" />
     <Content Include="js\jquery-3.5.1.slim.min.js" />
+    <Content Include="LogDetail.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="LogList.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LogDetail.aspx.cs">
+      <DependentUpon>LogDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LogDetail.aspx.designer.cs">
+      <DependentUpon>LogDetail.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

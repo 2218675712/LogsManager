@@ -1,5 +1,5 @@
 ﻿using System;
-namespace LogsManager.Model
+namespace Maticsoft.Model
 {
     /// <summary>
     /// Info_Logs_Model:实体类(属性说明自动提取数据库字段的描述信息)

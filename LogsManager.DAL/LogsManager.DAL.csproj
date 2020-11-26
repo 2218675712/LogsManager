@@ -39,6 +39,7 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="Class1.cs" />
+        <Compile Include="Info_Comment_DAL.cs" />
         <Compile Include="Info_Logs_DAL.cs" />
         <Compile Include="Info_User_DAL.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />

@@ -4,6 +4,7 @@ using System.Text;
 using System.Data.SqlClient;
 using LogsManager.DBUtility;
 using LogsManager.Model;
+using Maticsoft.Model;
 
 namespace LogsManager.DAL
 {
@@ -23,9 +24,9 @@ namespace LogsManager.DAL
 		{
 			StringBuilder strSql=new StringBuilder();
 			strSql.Append("select count(1) from Info_Logs");
-			strSql.Append(" where LogsID=SQL2012LogsID ");
+			strSql.Append(" where LogsID=@LogsID ");
 			SqlParameter[] parameters = {
-					new SqlParameter("SQL2012LogsID", SqlDbType.UniqueIdentifier,16)			};
+					new SqlParameter("@LogsID", SqlDbType.UniqueIdentifier,16)			};
 			parameters[0].Value = LogsID;
 
 			return DbHelperSQL.Exists(strSql.ToString(),parameters);
@@ -41,18 +42,18 @@ namespace LogsManager.DAL
 			strSql.Append("insert into Info_Logs(");
 			strSql.Append("LogsID,LogsTitle,LogsContent,CoverPictureUrl,CreateUser,CreateTime,UpdateUser,UpdateTime,isDelete,Remark)");
 			strSql.Append(" values (");
-			strSql.Append("SQL2012LogsID,SQL2012LogsTitle,SQL2012LogsContent,SQL2012CoverPictureUrl,SQL2012CreateUser,SQL2012CreateTime,SQL2012UpdateUser,SQL2012UpdateTime,SQL2012isDelete,SQL2012Remark)");
+			strSql.Append("@LogsID,@LogsTitle,@LogsContent,@CoverPictureUrl,@CreateUser,@CreateTime,@UpdateUser,@UpdateTime,@isDelete,@Remark)");
 			SqlParameter[] parameters = {
-					new SqlParameter("SQL2012LogsID", SqlDbType.UniqueIdentifier,16),
-					new SqlParameter("SQL2012LogsTitle", SqlDbType.NVarChar,50),
-					new SqlParameter("SQL2012LogsContent", SqlDbType.NVarChar,-1),
-					new SqlParameter("SQL2012CoverPictureUrl", SqlDbType.NVarChar,255),
-					new SqlParameter("SQL2012CreateUser", SqlDbType.UniqueIdentifier,16),
-					new SqlParameter("SQL2012CreateTime", SqlDbType.DateTime),
-					new SqlParameter("SQL2012UpdateUser", SqlDbType.UniqueIdentifier,16),
-					new SqlParameter("SQL2012UpdateTime", SqlDbType.DateTime),
-					new SqlParameter("SQL2012isDelete", SqlDbType.Bit,1),
-					new SqlParameter("SQL2012Remark", SqlDbType.NVarChar,50)};
+					new SqlParameter("@LogsID", SqlDbType.UniqueIdentifier,16),
+					new SqlParameter("@LogsTitle", SqlDbType.NVarChar,50),
+					new SqlParameter("@LogsContent", SqlDbType.NVarChar,-1),
+					new SqlParameter("@CoverPictureUrl", SqlDbType.NVarChar,255),
+					new SqlParameter("@CreateUser", SqlDbType.UniqueIdentifier,16),
+					new SqlParameter("@CreateTime", SqlDbType.DateTime),
+					new SqlParameter("@UpdateUser", SqlDbType.UniqueIdentifier,16),
+					new SqlParameter("@UpdateTime", SqlDbType.DateTime),
+					new SqlParameter("@isDelete", SqlDbType.Bit,1),
+					new SqlParameter("@Remark", SqlDbType.NVarChar,50)};
 			parameters[0].Value = Guid.NewGuid();
 			parameters[1].Value = model.LogsTitle;
 			parameters[2].Value = model.LogsContent;
@@ -81,27 +82,27 @@ namespace LogsManager.DAL
 		{
 			StringBuilder strSql=new StringBuilder();
 			strSql.Append("update Info_Logs set ");
-			strSql.Append("LogsTitle=SQL2012LogsTitle,");
-			strSql.Append("LogsContent=SQL2012LogsContent,");
-			strSql.Append("CoverPictureUrl=SQL2012CoverPictureUrl,");
-			strSql.Append("CreateUser=SQL2012CreateUser,");
-			strSql.Append("CreateTime=SQL2012CreateTime,");
-			strSql.Append("UpdateUser=SQL2012UpdateUser,");
-			strSql.Append("UpdateTime=SQL2012UpdateTime,");
-			strSql.Append("isDelete=SQL2012isDelete,");
-			strSql.Append("Remark=SQL2012Remark");
-			strSql.Append(" where LogsID=SQL2012LogsID ");
+			strSql.Append("LogsTitle=@LogsTitle,");
+			strSql.Append("LogsContent=@LogsContent,");
+			strSql.Append("CoverPictureUrl=@CoverPictureUrl,");
+			strSql.Append("CreateUser=@CreateUser,");
+			strSql.Append("CreateTime=@CreateTime,");
+			strSql.Append("UpdateUser=@UpdateUser,");
+			strSql.Append("UpdateTime=@UpdateTime,");
+			strSql.Append("isDelete=@isDelete,");
+			strSql.Append("Remark=@Remark");
+			strSql.Append(" where LogsID=@LogsID ");
 			SqlParameter[] parameters = {
-					new SqlParameter("SQL2012LogsTitle", SqlDbType.NVarChar,50),
-					new SqlParameter("SQL2012LogsContent", SqlDbType.NVarChar,-1),
-					new SqlParameter("SQL2012CoverPictureUrl", SqlDbType.NVarChar,255),
-					new SqlParameter("SQL2012CreateUser", SqlDbType.UniqueIdentifier,16),
-					new SqlParameter("SQL2012CreateTime", SqlDbType.DateTime),
-					new SqlParameter("SQL2012UpdateUser", SqlDbType.UniqueIdentifier,16),
-					new SqlParameter("SQL2012UpdateTime", SqlDbType.DateTime),
-					new SqlParameter("SQL2012isDelete", SqlDbType.Bit,1),
-					new SqlParameter("SQL2012Remark", SqlDbType.NVarChar,50),
-					new SqlParameter("SQL2012LogsID", SqlDbType.UniqueIdentifier,16)};
+					new SqlParameter("@LogsTitle", SqlDbType.NVarChar,50),
+					new SqlParameter("@LogsContent", SqlDbType.NVarChar,-1),
+					new SqlParameter("@CoverPictureUrl", SqlDbType.NVarChar,255),
+					new SqlParameter("@CreateUser", SqlDbType.UniqueIdentifier,16),
+					new SqlParameter("@CreateTime", SqlDbType.DateTime),
+					new SqlParameter("@UpdateUser", SqlDbType.UniqueIdentifier,16),
+					new SqlParameter("@UpdateTime", SqlDbType.DateTime),
+					new SqlParameter("@isDelete", SqlDbType.Bit,1),
+					new SqlParameter("@Remark", SqlDbType.NVarChar,50),
+					new SqlParameter("@LogsID", SqlDbType.UniqueIdentifier,16)};
 			parameters[0].Value = model.LogsTitle;
 			parameters[1].Value = model.LogsContent;
 			parameters[2].Value = model.CoverPictureUrl;
@@ -132,9 +133,9 @@ namespace LogsManager.DAL
 			
 			StringBuilder strSql=new StringBuilder();
 			strSql.Append("delete from Info_Logs ");
-			strSql.Append(" where LogsID=SQL2012LogsID ");
+			strSql.Append(" where LogsID=@LogsID ");
 			SqlParameter[] parameters = {
-					new SqlParameter("SQL2012LogsID", SqlDbType.UniqueIdentifier,16)			};
+					new SqlParameter("@LogsID", SqlDbType.UniqueIdentifier,16)			};
 			parameters[0].Value = LogsID;
 
 			int rows=DbHelperSQL.ExecuteSql(strSql.ToString(),parameters);
@@ -175,9 +176,9 @@ namespace LogsManager.DAL
 			
 			StringBuilder strSql=new StringBuilder();
 			strSql.Append("select  top 1 LogsID,LogsTitle,LogsContent,CoverPictureUrl,CreateUser,CreateTime,UpdateUser,UpdateTime,isDelete,Remark from Info_Logs ");
-			strSql.Append(" where LogsID=SQL2012LogsID ");
+			strSql.Append(" where LogsID=@LogsID ");
 			SqlParameter[] parameters = {
-					new SqlParameter("SQL2012LogsID", SqlDbType.UniqueIdentifier,16)			};
+					new SqlParameter("@LogsID", SqlDbType.UniqueIdentifier,16)			};
 			parameters[0].Value = LogsID;
 
 			Info_Logs_Model model=new Info_Logs_Model();
@@ -342,13 +343,13 @@ namespace LogsManager.DAL
 		public DataSet GetList(int PageSize,int PageIndex,string strWhere)
 		{
 			SqlParameter[] parameters = {
-					new SqlParameter("SQL2012tblName", SqlDbType.VarChar, 255),
-					new SqlParameter("SQL2012fldName", SqlDbType.VarChar, 255),
-					new SqlParameter("SQL2012PageSize", SqlDbType.Int),
-					new SqlParameter("SQL2012PageIndex", SqlDbType.Int),
-					new SqlParameter("SQL2012IsReCount", SqlDbType.Bit),
-					new SqlParameter("SQL2012OrderType", SqlDbType.Bit),
-					new SqlParameter("SQL2012strWhere", SqlDbType.VarChar,1000),
+					new SqlParameter("@tblName", SqlDbType.VarChar, 255),
+					new SqlParameter("@fldName", SqlDbType.VarChar, 255),
+					new SqlParameter("@PageSize", SqlDbType.Int),
+					new SqlParameter("@PageIndex", SqlDbType.Int),
+					new SqlParameter("@IsReCount", SqlDbType.Bit),
+					new SqlParameter("@OrderType", SqlDbType.Bit),
+					new SqlParameter("@strWhere", SqlDbType.VarChar,1000),
 					};
 			parameters[0].Value = "Info_Logs";
 			parameters[1].Value = "LogsID";

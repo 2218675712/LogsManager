@@ -3,31 +3,29 @@ using System.Data;
 using System.Collections.Generic;
 using LogsManager.DAL;
 using LogsManager.Model;
-using Maticsoft.Model;
-
 namespace LogsManager.BLL
 {
 	/// <summary>
-	/// Info_Logs_BLL
+	/// Info_Comment_BLL
 	/// </summary>
-	public partial class Info_Logs_BLL
+	public partial class Info_Comment_BLL
 	{
-		private readonly Info_Logs_DAL dal=new Info_Logs_DAL();
-		public Info_Logs_BLL()
+		private readonly Info_Comment_DAL dal=new Info_Comment_DAL();
+		public Info_Comment_BLL()
 		{}
 		#region  BasicMethod
 		/// <summary>
 		/// 是否存在该记录
 		/// </summary>
-		public bool Exists(Guid LogsID)
+		public bool Exists(Guid CommentID)
 		{
-			return dal.Exists(LogsID);
+			return dal.Exists(CommentID);
 		}
 
 		/// <summary>
 		/// 增加一条数据
 		/// </summary>
-		public bool Add(Info_Logs_Model model)
+		public bool Add(Info_Comment_Model model)
 		{
 			return dal.Add(model);
 		}
@@ -35,7 +33,7 @@ namespace LogsManager.BLL
 		/// <summary>
 		/// 更新一条数据
 		/// </summary>
-		public bool Update(Info_Logs_Model model)
+		public bool Update(Info_Comment_Model model)
 		{
 			return dal.Update(model);
 		}
@@ -43,26 +41,26 @@ namespace LogsManager.BLL
 		/// <summary>
 		/// 删除一条数据
 		/// </summary>
-		public bool Delete(Guid LogsID)
+		public bool Delete(Guid CommentID)
 		{
 			
-			return dal.Delete(LogsID);
+			return dal.Delete(CommentID);
 		}
 		/// <summary>
 		/// 删除一条数据
 		/// </summary>
-		public bool DeleteList(string LogsIDlist )
+		public bool DeleteList(string CommentIDlist )
 		{
-			return dal.DeleteList(LogsIDlist );
+			return dal.DeleteList(CommentIDlist );
 		}
 
 		/// <summary>
 		/// 得到一个对象实体
 		/// </summary>
-		public Info_Logs_Model GetModel(Guid LogsID)
+		public Info_Comment_Model GetModel(Guid CommentID)
 		{
 			
-			return dal.GetModel(LogsID);
+			return dal.GetModel(CommentID);
 		}
 
 		/// <summary>
@@ -82,7 +80,7 @@ namespace LogsManager.BLL
 		/// <summary>
 		/// 获得数据列表
 		/// </summary>
-		public List<Info_Logs_Model> GetModelList(string strWhere)
+		public List<Info_Comment_Model> GetModelList(string strWhere)
 		{
 			DataSet ds = dal.GetList(strWhere);
 			return DataTableToList(ds.Tables[0]);
@@ -90,13 +88,13 @@ namespace LogsManager.BLL
 		/// <summary>
 		/// 获得数据列表
 		/// </summary>
-		public List<Info_Logs_Model> DataTableToList(DataTable dt)
+		public List<Info_Comment_Model> DataTableToList(DataTable dt)
 		{
-			List<Info_Logs_Model> modelList = new List<Info_Logs_Model>();
+			List<Info_Comment_Model> modelList = new List<Info_Comment_Model>();
 			int rowsCount = dt.Rows.Count;
 			if (rowsCount > 0)
 			{
-				Info_Logs_Model model;
+				Info_Comment_Model model;
 				for (int n = 0; n < rowsCount; n++)
 				{
 					model = dal.DataRowToModel(dt.Rows[n]);
