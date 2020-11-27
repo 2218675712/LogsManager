@@ -66,7 +66,7 @@ namespace LogsManager.Web
             // 为空.添加
             if (UserID!=null)
             {
-                两种写法
+                // 两种写法
                 Info_Logs_Model infoLogsModel = new Info_Logs_Model()
                 {
                     LogsTitle = LogsTitle,

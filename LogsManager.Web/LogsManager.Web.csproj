@@ -67,6 +67,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="BasePage.aspx" />
     <Content Include="css\bootstrap.min.css" />
     <Content Include="js\bootstrap.bundle.min.js" />
     <Content Include="js\jquery-3.5.1.slim.min.js" />
@@ -76,6 +77,8 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BasePage.aspx.cs" />
+    <Compile Include="BasePage.aspx.designer.cs" />
     <Compile Include="LogDetail.aspx.cs">
       <DependentUpon>LogDetail.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
