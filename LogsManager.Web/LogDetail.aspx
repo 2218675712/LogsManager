@@ -6,18 +6,30 @@
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
 </head>
 <body>
 <form id="form1" runat="server">
-    <div>
-
-        标题:<asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+    <div class="container mt-5">
+        <div class="mb-3">
+            <label class="form-label">
+                标题:
+            </label>
+            <asp:TextBox ID="TextBox1" class="form-control" runat="server"></asp:TextBox>
+        </div>
+        <div>
+            <label class="form-label">
+                内容:
+            </label>
+            <textarea id="TextArea1" class="form-control" runat="server" cols="20" rows="4"></textarea>
+        </div>
         <br/>
-        内容:<textarea id="TextArea1" runat="server" cols="20" rows="2"></textarea>
-        <br/>
-        <asp:HiddenField ID="HiddenField1" runat="server" />
-        <asp:Button ID="Button1" runat="server" Text="Button" OnClick="Button1_Click"/>
+        <asp:HiddenField ID="HiddenField1" runat="server"/>
+        <asp:Button ID="Button1" runat="server" class="btn btn-primary" Text="确定" OnClick="Button1_Click"/>
     </div>
 </form>
+<script src="js/jquery-3.5.1.slim.min.js"></script>
+<script src="js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

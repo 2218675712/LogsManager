@@ -89,13 +89,13 @@ namespace LogsManager.Web
             string LogsID = ((HiddenField) e.Item.FindControl("HiddenField1")).Value;
             if (e.CommandName == "ADD")
             {
-                Response.Redirect("LogDetail.aspx?LogsID=" + LogsID);
+                Response.Redirect("LogDetail.aspx?LogsID=" + LogsID+"&AccountNum="+AccountNum+"&UserID="+UserID);
             }
         }
 
         protected void LinkButton2_OnClick(object sender, EventArgs e)
         {
-            Response.Redirect("LogDetail.aspx?UserID="+UserID);
+            Response.Redirect("LogDetail.aspx?UserID="+UserID+"&AccountNum="+AccountNum);
         }
     }
 }
