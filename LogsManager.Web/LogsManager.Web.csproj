@@ -116,6 +116,10 @@
       <Project>{c98ee30c-8671-4c96-a455-1e9e396e5258}</Project>
       <Name>LogsManager.BLL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\LogsManager.Common\LogsManager.Common.csproj">
+      <Project>{b38ea159-5cd3-40d6-b9ed-4b1e020a11c2}</Project>
+      <Name>LogsManager.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\LogsManager.DBUtility\LogsManager.DBUtility.csproj">
       <Project>{717fc34b-e4b6-4e41-81e6-715318199ebe}</Project>
       <Name>LogsManager.DBUtility</Name>

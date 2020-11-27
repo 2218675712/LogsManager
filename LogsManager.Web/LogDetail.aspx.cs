@@ -10,7 +10,8 @@ using Maticsoft.Model;
 
 namespace LogsManager.Web
 {
-    public partial class LogDetail : System.Web.UI.Page
+    // public partial class LogDetail : System.Web.UI.Page
+    public partial class LogDetail : BasePage
     {
         public string LogsID;
         public string UserID;

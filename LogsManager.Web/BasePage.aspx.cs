@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using LogsManager.Common;
 
 namespace LogsManager.Web
 {
@@ -20,13 +21,13 @@ namespace LogsManager.Web
             {
                 if (string.IsNullOrEmpty(CurrentUser))
                 {
-                    if (Session["LoginUserID"] != null)
-                        return Session["LoginUserID"].ToString();
+                    if (Session["UserID"] != null)
+                        return Session["UserID"].ToString();
                     else
                         return "";
                 }
                 else
-                    return (string)CookieHelper.GetCookieValue("LoginUserID");
+                    return (string)CookieHelper.GetCookieValue("UserID");
             }
         }
 
@@ -34,7 +35,7 @@ namespace LogsManager.Web
         {
             get
             {
-                return (string)CookieHelper.GetCookieValue("LoginUserID");
+                return (string)CookieHelper.GetCookieValue("UserID");
             }
             set
             {
@@ -48,9 +49,10 @@ namespace LogsManager.Web
             {
                 //看看用户是不是只接登录的
                 //是直接登陆的在登录里存了Session 保证页面关闭前可以完成校验
-                if (Session["LoginUserID"] == null)
+                if (Session["UserID"] == null)
                 {
-                    Response.Redirect("~/Login.aspx");
+                    Response.Write("<script type='text/javascript'>alert('您需要重新登陆');</script>");
+                    Response.Redirect("LogList.aspx");
                 }
             }
             base.OnInit(e);
