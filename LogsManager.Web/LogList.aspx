@@ -35,6 +35,7 @@
                             <th>查看</th>
                             <th>更新</th>
                             <th>删除</th>
+                            <th><asp:LinkButton  runat="server" ID="ADD" class="btn btn-light" CommandName="ADD" >添加</asp:LinkButton></th>
                         </tr>
                         </thead>
                     </HeaderTemplate>
@@ -44,7 +45,7 @@
                             <td ><%#Eval("UserName") %></td>
                             <td > <%#Eval("CreateTime") %></td>
                             <td >
-                                <asp:LinkButton ID="ADD" runat="server" class="btn btn-light" CommandName="ADD">查看</asp:LinkButton>
+                                <asp:LinkButton ID="Check" runat="server" class="btn btn-light" CommandName="Check">查看</asp:LinkButton>
                             </td>
                             <td >
                                 <asp:LinkButton ID="Edit" runat="server" class="btn btn-info" CommandName="Edit">更新</asp:LinkButton>
@@ -52,13 +53,17 @@
                             <td >
                                 <asp:LinkButton ID="Delete" runat="server" class="btn btn-danger" CommandName="Delete">删除</asp:LinkButton>
                             </td>
+                            <%-- 日志id --%>
                             <td>
                                 <asp:HiddenField ID="HiddenField1" runat="server"  Value='<%#Eval("LogsID") %>' />
+                            </td>
+                            <%-- 日志创建人 --%>
+                            <td>
+                                <asp:HiddenField ID="HiddenField2" runat="server"  Value='<%#Eval("CreateUser") %>' />
                             </td>
                         </tr>
                     </ItemTemplate>
                 </asp:Repeater>
-                <asp:LinkButton runat="server" ID="LinkButton2" class="btn btn-light" OnClick="LinkButton2_OnClick">添加</asp:LinkButton>
             </table>
 
         </div>

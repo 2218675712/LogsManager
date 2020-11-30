@@ -74,6 +74,7 @@
     <Content Include="LogDetail.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="LogList.aspx" />
+    <Content Include="LogShow.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -99,6 +100,13 @@
     </Compile>
     <Compile Include="LogList.aspx.designer.cs">
       <DependentUpon>LogList.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LogShow.aspx.cs">
+      <DependentUpon>LogShow.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LogShow.aspx.designer.cs">
+      <DependentUpon>LogShow.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

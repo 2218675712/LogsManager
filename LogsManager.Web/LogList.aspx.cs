@@ -54,6 +54,12 @@ namespace LogsManager.Web
         /// <param name="e"></param>
         protected void Repeater1_OnItemDataBound(object sender, RepeaterItemEventArgs e)
         {
+            // 三种判断
+            //1游客除查看按钮把所有按钮隐藏掉
+            //2登录人不是日志创建人更新和删除按钮隐藏
+            //3登录人是日志创建人无需操作
+
+
             // throw new NotImplementedException();
             // rpt 循环绑定类型==行||rpt循环绑定类型==头模板的时候
 
@@ -61,14 +67,39 @@ namespace LogsManager.Web
             if (string.IsNullOrEmpty(AccountNum))
             {
                 // e.Item.ItemType==ListItemType.Item||
-                if (!(e.Item.ItemType == ListItemType.Header))
+                if ((e.Item.ItemType == ListItemType.Header))
                 {
-                    var Add = ((LinkButton) e.Item.FindControl("ADD"));
-                    if (Add != null)
+                    var ADD = ((LinkButton) e.Item.FindControl("ADD"));
+                    if (ADD != null)
                     {
-                        Add.Visible = false;
+                        ADD.Visible = false;
+                    }
+                }
+                else
+                {
+                    var Edit = ((LinkButton) e.Item.FindControl("Edit"));
+                    if (Edit != null)
+                    {
+                        Edit.Visible = false;
                     }
 
+                    var Delete = ((LinkButton) e.Item.FindControl("Delete"));
+                    if (Delete != null)
+                    {
+                        Delete.Visible = false;
+                    }
+                }
+
+                return;
+            }
+
+            if (e.Item.ItemType != ListItemType.Header)
+            {
+                // 创建人id
+                string CreateUser = ((HiddenField) e.Item.FindControl("HiddenField2")).Value;
+                if (CreateUser != UserID)
+                {
+                    // 判断这条文章是不是当前登录用户发布的
                     var Edit = ((LinkButton) e.Item.FindControl("Edit"));
                     if (Edit != null)
                     {
@@ -86,16 +117,17 @@ namespace LogsManager.Web
 
         protected void Repeater1_OnItemCommand(object source, RepeaterCommandEventArgs e)
         {
-            string LogsID = ((HiddenField) e.Item.FindControl("HiddenField1")).Value;
-            if (e.CommandName == "ADD")
+            if (e.CommandName == "Edit")
             {
-                Response.Redirect("LogDetail.aspx?LogsID=" + LogsID+"&AccountNum="+AccountNum+"&UserID="+UserID);
-            }
-        }
+                string LogsID = ((HiddenField) e.Item.FindControl("HiddenField1")).Value;
 
-        protected void LinkButton2_OnClick(object sender, EventArgs e)
-        {
-            Response.Redirect("LogDetail.aspx?UserID="+UserID+"&AccountNum="+AccountNum);
+                Response.Redirect("LogDetail.aspx?LogsID=" + LogsID + "&AccountNum=" + AccountNum + "&UserID=" +
+                                  UserID);
+            }
+            else if (e.CommandName == "ADD")
+            {
+                Response.Redirect("LogDetail.aspx?UserID=" + UserID + "&AccountNum=" + AccountNum);
+            }
         }
     }
 }
