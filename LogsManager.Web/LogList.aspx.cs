@@ -123,8 +123,15 @@ namespace LogsManager.Web
 
                 Response.Redirect("LogDetail.aspx?LogsID=" + LogsID + "&AccountNum=" + AccountNum + "&UserID=" +
                                   UserID);
+            } else if (e.CommandName=="Check")
+            {
+                string LogsID = ((HiddenField) e.Item.FindControl("HiddenField1")).Value;
+
+                Response.Redirect("LogShow.aspx?LogsID="+ LogsID + "&AccountNum=" + AccountNum + "&UserID=" +
+                                  UserID);
+
             }
-            else if (e.CommandName == "ADD")
+            if (e.CommandName == "ADD")
             {
                 Response.Redirect("LogDetail.aspx?UserID=" + UserID + "&AccountNum=" + AccountNum);
             }

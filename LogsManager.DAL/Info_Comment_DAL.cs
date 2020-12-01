@@ -50,9 +50,12 @@ namespace LogsManager.DAL
 					new SqlParameter("@CommentTime", SqlDbType.DateTime),
 					new SqlParameter("@IsDelete", SqlDbType.Bit,1)};
 			parameters[0].Value = Guid.NewGuid();
-			parameters[1].Value = Guid.NewGuid();
+			// parameters[1].Value = Guid.NewGuid();
+			parameters[1].Value = model.LogsID;
 			parameters[2].Value = model.CommentContent;
-			parameters[3].Value = Guid.NewGuid();
+			// parameters[3].Value = Guid.NewGuid();
+			parameters[3].Value = model.Commentator;
+
 			parameters[4].Value = model.CommentTime;
 			parameters[5].Value = model.IsDelete;
 

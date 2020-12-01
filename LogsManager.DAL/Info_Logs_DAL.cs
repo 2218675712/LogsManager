@@ -58,9 +58,13 @@ namespace LogsManager.DAL
 			parameters[1].Value = model.LogsTitle;
 			parameters[2].Value = model.LogsContent;
 			parameters[3].Value = model.CoverPictureUrl;
-			parameters[4].Value = Guid.NewGuid();
+			// parameters[4].Value = Guid.NewGuid();
+			parameters[4].Value = model.CreateUser;
+
 			parameters[5].Value = model.CreateTime;
-			parameters[6].Value = Guid.NewGuid();
+			// parameters[6].Value = Guid.NewGuid();
+			parameters[6].Value = model.UpdateUser;
+
 			parameters[7].Value = model.UpdateTime;
 			parameters[8].Value = model.isDelete;
 			parameters[9].Value = model.Remark;

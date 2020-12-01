@@ -71,9 +71,13 @@ namespace LogsManager.DAL
             parameters[4].Value = model.UserPhone;
             parameters[5].Value = model.AccountNum;
             parameters[6].Value = model.Pwd;
-            parameters[7].Value = Guid.NewGuid();
+            // parameters[7].Value = Guid.NewGuid();
+            parameters[7].Value = model.CreateUser;
+
             parameters[8].Value = model.CreateTime;
-            parameters[9].Value = Guid.NewGuid();
+            // parameters[9].Value = Guid.NewGuid();
+            parameters[9].Value = model.UpdateUser;
+
             parameters[10].Value = model.UpdateTime;
             parameters[11].Value = model.IsDelete;
             parameters[12].Value = model.Remark;
