@@ -46,8 +46,19 @@
                     </ItemTemplate>
                 </asp:Repeater>
             </div>
-            <div>
-                
+            <div class="col-10 offset-1 mb-5" >
+                <div class="mt-2">
+                    <asp:Label ID="Label7" runat="server" Text="提交评论" class="h5"></asp:Label>
+                </div>
+                <div class="mb-3">
+                    <textarea runat="server" id="TextArea1" cols="20" rows="2" placeholder="请输入评论" class="form-control mt-3"></textarea>
+                    <div class="invalid-feedback">
+                        <%-- invalid-feedback --%>
+                <asp:Label runat="server" ID="Label8" Visible="False"></asp:Label>
+                    </div>
+                </div>
+                <asp:LinkButton ID="LinkButton1" runat="server" OnClick="LinkButton1_OnClick" CssClass="btn btn-primary">提交</asp:LinkButton>
+                <asp:LinkButton ID="LinkButton2" runat="server" CssClass="btn btn-danger">返回</asp:LinkButton>
             </div>
         </div>
 
