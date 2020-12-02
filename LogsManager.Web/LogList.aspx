@@ -17,10 +17,14 @@
         <ul class="nav  justify-content-end">
             <li class="nav-item">
                 <%-- <a class="nav-link active" href="/Login.aspx">登录</a> --%>
-                <asp:LinkButton ID="LinkButton1" class="nav-link active" runat="server" OnClick="LinkButton1_Click">登录</asp:LinkButton>
+                <asp:LinkButton ID="LinkButton1" class="nav-link active" runat="server" OnClick="LinkButton1_Click" >登录</asp:LinkButton>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">注册</a>
+            </li>
+            
+            <li class="nav-item">
+                <asp:LinkButton runat="server" ID="LinkButton2" CssClass="nav-link active text-danger" runat="server" OnClick="LinkButton2_OnClick" Visible="False">注销</asp:LinkButton>
             </li>
         </ul>
         <div class="row">

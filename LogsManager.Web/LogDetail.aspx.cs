@@ -59,7 +59,6 @@ namespace LogsManager.Web
                 if (result)
                 {
                     Response.Write("更新成功");
-                    // Response.Redirect("LogList.aspx");
                     Response.Redirect("LogList.aspx?LogsID=" + LogsID+"&AccountNum="+AccountNum+"&UserID="+UserID);
 
                 }
@@ -76,11 +75,6 @@ namespace LogsManager.Web
                     CreateTime = DateTime.Now,
                     CreateUser = new Guid(UserID)
                 };
-                /*infoLogsModel.LogsTitle = LogsTitle;
-                infoLogsModel.LogsContent = LogsContent;
-                infoLogsModel.isDelete = false;
-                infoLogsModel.CreateTime = DateTime.Now;
-                infoLogsModel.CreateUser = new Guid(UserID);*/
                 bool result = infoLogsBll.Add(infoLogsModel);
                 if (result)
                 {

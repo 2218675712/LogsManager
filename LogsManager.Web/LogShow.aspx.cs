@@ -28,6 +28,7 @@ namespace LogsManager.Web
             {
                 GetInfoLogs();
                 GetComments();
+               
             }
         }
 
@@ -83,7 +84,6 @@ namespace LogsManager.Web
         protected void LinkButton2_OnClick(object sender, EventArgs e)
         {
             Response.Write("<script type='text/javascript'>history.go(-2);</script>");
-
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="LogShow.aspx.cs" Inherits="LogsManager.Web.LogShow" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="LogShow.aspx.cs" Inherits="LogsManager.Web.LogShow"%>
 
 <!DOCTYPE html>
 

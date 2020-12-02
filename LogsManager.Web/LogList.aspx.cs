@@ -7,7 +7,9 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using LogsManager.BLL;
+using LogsManager.Common;
 using LogsManager.DBUtility;
+using Maticsoft.Model;
 
 namespace LogsManager.Web
 {
@@ -25,6 +27,11 @@ namespace LogsManager.Web
                 UserID = Request["UserID"];
             }
 
+            if (LinkButton1.Text != "登录")
+            {
+                LinkButton2.Visible = true;
+            }
+
             GetLogsList();
         }
 
@@ -32,7 +39,8 @@ namespace LogsManager.Web
         {
             if (string.IsNullOrEmpty(sql))
             {
-                sql = "select IL.*,IU.UserName from Info_Logs IL left join Info_User IU on IL.CreateUser = IU.UserID";
+                sql =
+                    "select IL.*,IU.UserName from Info_Logs IL left join Info_User IU on IL.CreateUser = IU.UserID where IL.isDelete=0";
             }
 
             Info_Logs_BLL infoLogsBll = new Info_Logs_BLL();
@@ -123,18 +131,37 @@ namespace LogsManager.Web
 
                 Response.Redirect("LogDetail.aspx?LogsID=" + LogsID + "&AccountNum=" + AccountNum + "&UserID=" +
                                   UserID);
-            } else if (e.CommandName=="Check")
+            }
+            else if (e.CommandName == "Check")
             {
                 string LogsID = ((HiddenField) e.Item.FindControl("HiddenField1")).Value;
 
-                Response.Redirect("LogShow.aspx?LogsID="+ LogsID + "&AccountNum=" + AccountNum + "&UserID=" +
+                Response.Redirect("LogShow.aspx?LogsID=" + LogsID + "&AccountNum=" + AccountNum + "&UserID=" +
                                   UserID);
-
             }
+            else if (e.CommandName == "Delete")
+            {
+                string LogsID = ((HiddenField) e.Item.FindControl("HiddenField1")).Value;
+                Info_Logs_BLL infoLogsBll = new Info_Logs_BLL();
+                Info_Logs_Model infoLogsModel = infoLogsBll.GetModel(new Guid(LogsID));
+                infoLogsModel.isDelete = true;
+                infoLogsModel.UpdateUser = new Guid(UserID);
+                infoLogsModel.UpdateTime = DateTime.Now;
+                infoLogsBll.Update(infoLogsModel);
+                GetLogsList();
+                // infoLogsBll.Update("")
+            }
+
             if (e.CommandName == "ADD")
             {
                 Response.Redirect("LogDetail.aspx?UserID=" + UserID + "&AccountNum=" + AccountNum);
             }
+        }
+
+        protected void LinkButton2_OnClick(object sender, EventArgs e)
+        {
+            CookieHelper.ClearCookie("UserID");
+            Response.Redirect("Login.aspx");
         }
     }
 }
