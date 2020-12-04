@@ -24,11 +24,25 @@ namespace LogsManager.Web
         {
             Info_User_BLL infoUserBll = new Info_User_BLL();
             Info_User_Model infoUserModel = new Info_User_Model();
+            string AccountNum = TextBox1.Text.Trim();
+            string Pwd = TextBox2.Text.Trim();
+//todo 写一个个人详情页补全个人信息
+
+            List<Info_User_Model> infoUserModels = infoUserBll.GetModelList("AccountNum='" + AccountNum + "'");
+            // lambda表达式 .tolist转换为list列表
+            if (infoUserModels.Where(x => x.AccountNum == AccountNum).ToList().Count > 0)
+            {
+                Response.Write("用户账户已经重复,请输入其他的");
+                return;
+            }
+
+
             infoUserModel.UserID = Guid.NewGuid();
-            infoUserModel.AccountNum = TextBox1.Text.Trim();
-            infoUserModel.Pwd = TextBox2.Text.Trim();
+            infoUserModel.AccountNum = AccountNum;
+            infoUserModel.Pwd = Pwd;
             infoUserModel.CreateUser = Guid.NewGuid();
             infoUserModel.CreateTime = DateTime.Now;
+
             bool result = infoUserBll.Add(infoUserModel);
             if (result)
             {
