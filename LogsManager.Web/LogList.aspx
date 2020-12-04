@@ -15,14 +15,18 @@
 <form id="form1" runat="server">
     <div class="container">
         <ul class="nav  justify-content-end">
-            <li class="nav-item">
-                <%-- <a class="nav-link active" href="/Login.aspx">登录</a> --%>
-                <asp:LinkButton ID="LinkButton1" class="nav-link active" runat="server" OnClick="LinkButton1_Click" >登录</asp:LinkButton>
+            <li class="nav-item ">
+                <a class="nav-link" href="/LogList.aspx">主页</a>
+
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">注册</a>
+                <%-- <asp:LinkButton ID="LinkButton1" class="nav-link active" runat="server" OnClick="LinkButton1_Click">登录</asp:LinkButton> --%>
+                <asp:LinkButton ID="LinkButton1" class="nav-link active" runat="server" OnClick="LinkButton1_Click">登录</asp:LinkButton>
             </li>
-            
+            <li class="nav-item">
+                <a class="nav-link" href="/Register.aspx">注册</a>
+            </li>
+
             <li class="nav-item">
                 <asp:LinkButton runat="server" ID="LinkButton2" CssClass="nav-link active text-danger" runat="server" OnClick="LinkButton2_OnClick" Visible="False">注销</asp:LinkButton>
             </li>
@@ -39,7 +43,9 @@
                             <th>查看</th>
                             <th>更新</th>
                             <th>删除</th>
-                            <th><asp:LinkButton  runat="server" ID="ADD" class="btn btn-light" CommandName="ADD" >添加</asp:LinkButton></th>
+                            <th>
+                                <asp:LinkButton runat="server" ID="ADD" class="btn btn-light" CommandName="ADD">添加</asp:LinkButton>
+                            </th>
                         </tr>
                         </thead>
                     </HeaderTemplate>
@@ -59,11 +65,11 @@
                             </td>
                             <%-- 日志id --%>
                             <td>
-                                <asp:HiddenField ID="HiddenField1" runat="server"  Value='<%#Eval("LogsID") %>' />
+                                <asp:HiddenField ID="HiddenField1" runat="server" Value='<%#Eval("LogsID") %>'/>
                             </td>
                             <%-- 日志创建人 --%>
                             <td>
-                                <asp:HiddenField ID="HiddenField2" runat="server"  Value='<%#Eval("CreateUser") %>' />
+                                <asp:HiddenField ID="HiddenField2" runat="server" Value='<%#Eval("CreateUser") %>'/>
                             </td>
                         </tr>
                     </ItemTemplate>

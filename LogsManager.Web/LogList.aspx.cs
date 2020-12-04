@@ -27,9 +27,11 @@ namespace LogsManager.Web
                 UserID = Request["UserID"];
             }
 
+            // 显示注销按钮
             if (LinkButton1.Text != "登录")
             {
                 LinkButton2.Visible = true;
+                LinkButton1.PostBackUrl = "UserDetail.aspx?UserID="+UserID;
             }
 
             GetLogsList();
