@@ -345,7 +345,7 @@ namespace LogsManager.DAL
 		/// <summary>
 		/// 增加一条数据,使用事务
 		/// </summary>
-		public void Add(SqlConnection conn,SqlTransaction trans,Sys_ProcessLog_Model model)
+		public bool Add(SqlConnection conn,SqlTransaction trans,Sys_ProcessLog_Model model)
 		{
 			StringBuilder strSql=new StringBuilder();
 			strSql.Append("insert into Sys_ProcessLog(");
@@ -368,7 +368,16 @@ namespace LogsManager.DAL
 			parameters[5].Value = model.IsDelete;
 			parameters[6].Value = model.Remark;
 
-			DbHelperSQL.ExecuteSql(conn, trans, strSql.ToString(), parameters);
+			int result=DbHelperSQL.ExecuteSql(conn, trans, strSql.ToString(), parameters);
+			if (result>0)
+			{
+				return true;
+			}
+			else
+			{
+				return false;
+	
+			}
 		}
 
 

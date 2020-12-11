@@ -526,14 +526,22 @@ namespace LogsManager.DAL
                         {
                             model.UserID = new Guid(Convert.ToString(obj));
                             // 判断想不想要加入日志,如果不想加入日志,可以传null
+                            bool processLogResult = true;
                             if (sysProcessLogModel != null)
                             {
                                 //添加时要告诉另一个语句用的是,哪一个连接，哪一个事务
-                                new Sys_ProcessLog_DAL().Add(conn, trans, sysProcessLogModel);
+                             processLogResult= new Sys_ProcessLog_DAL().Add(conn, trans, sysProcessLogModel);
                             }
-
-                            trans.Commit();
-                            result = true;
+                            if (processLogResult)
+                            {
+                                trans.Commit();
+                                result = true;
+                            }
+                            else
+                            {
+                                trans.Rollback();
+                                result = false;
+                            }
                         }
                     }
                     catch (Exception e)
