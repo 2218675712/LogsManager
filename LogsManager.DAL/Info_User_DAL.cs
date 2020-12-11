@@ -486,6 +486,8 @@ namespace LogsManager.DAL
                         strSql.Append(" values (");
                         strSql.Append(
                             "@UserID,@UserName,@UserAvatar,@UserSex,@UserPhone,@AccountNum,@Pwd,@CreateUser,@CreateTime,@UpdateUser,@UpdateTime,@IsDelete,@Remark)");
+                        // 添加查询结果
+                        strSql.Append(";select @UserID;");
                         SqlParameter[] parameters =
                         {
                             new SqlParameter("@UserID", SqlDbType.UniqueIdentifier, 16),
@@ -534,20 +536,20 @@ namespace LogsManager.DAL
                             }
                             if (processLogResult)
                             {
-                                trans.Commit();
                                 result = true;
+                                trans.Commit();
                             }
                             else
                             {
-                                trans.Rollback();
                                 result = false;
+                                trans.Rollback();
                             }
                         }
                     }
                     catch (Exception e)
                     {
-                        trans.Rollback();
                         result = false;
+                        trans.Rollback();
                     }
                 }
             }

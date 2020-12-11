@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using LogsManager.BLL;
 using LogsManager.Model;
+using LogsManager.Model.Enum;
 using Maticsoft.Model;
 
 namespace LogsManager.Web
@@ -41,8 +42,15 @@ namespace LogsManager.Web
             infoUserModel.Pwd = Pwd;
             infoUserModel.CreateUser = Guid.NewGuid();
             infoUserModel.CreateTime = DateTime.Now;
-
-            bool result = infoUserBll.Add(infoUserModel);
+            // 添加日志
+            Sys_ProcessLog_Model sysProcessLogModel = new Sys_ProcessLog_Model();
+            sysProcessLogModel.ID = Guid.NewGuid();
+            sysProcessLogModel.LogType = (int)SystemLogType.UserRegister;
+            sysProcessLogModel.LogDescription = "插入了一个用户";
+            sysProcessLogModel.CreateUser = new Guid("CB693BE8-D36C-4B27-8E6B-892987DC5D9E");
+            sysProcessLogModel.CreateTime=DateTime.Now;
+            // 修改成使用事务
+            bool result = infoUserBll.Add(infoUserModel,sysProcessLogModel);
             if (result)
             {
                 Response.Write("添加成功");

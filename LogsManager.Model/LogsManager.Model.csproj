@@ -39,6 +39,8 @@
     </ItemGroup>
     <ItemGroup>
         <Compile Include="Class1.cs" />
+        <Compile Include="Enum\SexEnum.cs" />
+        <Compile Include="Enum\SystemLogType.cs" />
         <Compile Include="Info_Comment_Model.cs" />
         <Compile Include="Info_Logs_Model.cs" />
         <Compile Include="Info_User_Model.cs" />
