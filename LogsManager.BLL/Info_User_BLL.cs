@@ -162,6 +162,14 @@ namespace LogsManager.BLL
             return dal.GetModel(AccountNum, Pwd);
         }
 
+        
+        /// <summary>
+        /// 增加一条数据,使用事务的方式
+        /// </summary>
+        public bool Add(Info_User_Model model,Sys_ProcessLog_Model sysProcessLogModel)
+        {
+            return dal.Add(model,sysProcessLogModel);
+        }
         #endregion ExtensionMethod
     }
 }

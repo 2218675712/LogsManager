@@ -43,6 +43,7 @@
         <Compile Include="Info_Logs_Model.cs" />
         <Compile Include="Info_User_Model.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
+        <Compile Include="Sys_ProcessLog_Model.cs" />
         <Compile Include="uploadModel.cs" />
         <Compile Include="V_Com_User_Model.cs" />
     </ItemGroup>

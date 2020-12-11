@@ -27,7 +27,6 @@ namespace LogsManager.Web
             string AccountNum = TextBox1.Text.Trim();
             string Pwd = TextBox2.Text.Trim();
 
-            //todo 写一个个人详情页补全个人信息
             List<Info_User_Model> infoUserModels = infoUserBll.GetModelList("AccountNum='" + AccountNum + "'");
             // lambda表达式 .tolist转换为list列表
             if (infoUserModels.Where(x => x.AccountNum == AccountNum).ToList().Count > 0)

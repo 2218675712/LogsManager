@@ -464,6 +464,89 @@ namespace LogsManager.DAL
 
         #region ExtensionMethod
 
+        /// <summary>
+        /// 添加一个用户并且加入日志
+        /// </summary>
+        public bool Add(Info_User_Model model, Sys_ProcessLog_Model sysProcessLogModel)
+        {
+            bool result = false;
+            // 使用数据库链接
+            using (SqlConnection conn = new SqlConnection(DbHelperSQL.connectionString))
+            {
+                conn.Open();
+                //使用事务 开始事务
+                using (SqlTransaction trans = conn.BeginTransaction())
+                {
+                    try
+                    {
+                        StringBuilder strSql = new StringBuilder();
+                        strSql.Append("insert into Info_User(");
+                        strSql.Append(
+                            "UserID,UserName,UserAvatar,UserSex,UserPhone,AccountNum,Pwd,CreateUser,CreateTime,UpdateUser,UpdateTime,IsDelete,Remark)");
+                        strSql.Append(" values (");
+                        strSql.Append(
+                            "@UserID,@UserName,@UserAvatar,@UserSex,@UserPhone,@AccountNum,@Pwd,@CreateUser,@CreateTime,@UpdateUser,@UpdateTime,@IsDelete,@Remark)");
+                        SqlParameter[] parameters =
+                        {
+                            new SqlParameter("@UserID", SqlDbType.UniqueIdentifier, 16),
+                            new SqlParameter("@UserName", SqlDbType.NVarChar, 255),
+                            new SqlParameter("@UserAvatar", SqlDbType.NVarChar, 255),
+                            new SqlParameter("@UserSex", SqlDbType.Int, 4),
+                            new SqlParameter("@UserPhone", SqlDbType.NVarChar, 50),
+                            new SqlParameter("@AccountNum", SqlDbType.NVarChar, 50),
+                            new SqlParameter("@Pwd", SqlDbType.NVarChar, 255),
+                            new SqlParameter("@CreateUser", SqlDbType.UniqueIdentifier, 16),
+                            new SqlParameter("@CreateTime", SqlDbType.DateTime),
+                            new SqlParameter("@UpdateUser", SqlDbType.UniqueIdentifier, 16),
+                            new SqlParameter("@UpdateTime", SqlDbType.DateTime),
+                            new SqlParameter("@IsDelete", SqlDbType.Bit, 1),
+                            new SqlParameter("@Remark", SqlDbType.NVarChar, 50)
+                        };
+                        parameters[0].Value = Guid.NewGuid();
+                        parameters[1].Value = model.UserName;
+                        parameters[2].Value = model.UserAvatar;
+                        parameters[3].Value = model.UserSex;
+                        parameters[4].Value = model.UserPhone;
+                        parameters[5].Value = model.AccountNum;
+                        parameters[6].Value = model.Pwd;
+                        // parameters[7].Value = Guid.NewGuid();
+                        parameters[7].Value = model.CreateUser;
+
+                        parameters[8].Value = model.CreateTime;
+                        // parameters[9].Value = Guid.NewGuid();
+                        parameters[9].Value = model.UpdateUser;
+
+                        parameters[10].Value = model.UpdateTime;
+                        parameters[11].Value = model.IsDelete;
+                        parameters[12].Value = model.Remark;
+
+
+                        object obj = DbHelperSQL.GetSingle(conn, trans, strSql.ToString(), parameters);
+                        if (obj != null)
+                        {
+                            model.UserID = new Guid(Convert.ToString(obj));
+                            // 判断想不想要加入日志,如果不想加入日志,可以传null
+                            if (sysProcessLogModel != null)
+                            {
+                                //添加时要告诉另一个语句用的是,哪一个连接，哪一个事务
+                                new Sys_ProcessLog_DAL().Add(conn, trans, sysProcessLogModel);
+                            }
+
+                            trans.Commit();
+                            result = true;
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        trans.Rollback();
+                        result = false;
+                    }
+                }
+            }
+
+            return result;
+        }
+
         #endregion ExtensionMethod
     }
 }
