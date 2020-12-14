@@ -6,6 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using LogsManager.BLL;
 using LogsManager.Model;
+using LogsManager.Model.Enum;
 using Maticsoft.Model;
 
 namespace LogsManager.Web
@@ -55,7 +56,17 @@ namespace LogsManager.Web
                 infoLogsModel.isDelete = false;
                 infoLogsModel.UpdateTime = DateTime.Now;
                 infoLogsModel.UpdateUser = infoLogsModel.CreateUser;
-                bool result = infoLogsBll.Update(infoLogsModel);
+                
+                // 添加日志
+                Sys_ProcessLog_Model sysProcessLogModel = new Sys_ProcessLog_Model();
+                sysProcessLogModel.ID = Guid.NewGuid();
+                sysProcessLogModel.LogType = (int)SystemLogType.LogsAdd;
+                sysProcessLogModel.LogDescription = "更新了一条日志";
+                sysProcessLogModel.CreateUser = new Guid(UserID);
+                sysProcessLogModel.CreateTime=DateTime.Now;
+                
+                
+                bool result = infoLogsBll.Update(infoLogsModel,sysProcessLogModel);
                 if (result)
                 {
                     Response.Write("更新成功");
@@ -75,7 +86,14 @@ namespace LogsManager.Web
                     CreateTime = DateTime.Now,
                     CreateUser = new Guid(UserID)
                 };
-                bool result = infoLogsBll.Add(infoLogsModel);
+                // 添加日志
+                Sys_ProcessLog_Model sysProcessLogModel = new Sys_ProcessLog_Model();
+                sysProcessLogModel.ID = Guid.NewGuid();
+                sysProcessLogModel.LogType = (int)SystemLogType.LogsAdd;
+                sysProcessLogModel.LogDescription = "添加了一条日志";
+                sysProcessLogModel.CreateUser = new Guid(UserID);
+                sysProcessLogModel.CreateTime=DateTime.Now;
+                bool result = infoLogsBll.Add(infoLogsModel,sysProcessLogModel);
                 if (result)
                 {
                     Response.Write("添加成功");
