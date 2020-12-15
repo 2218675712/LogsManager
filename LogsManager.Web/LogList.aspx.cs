@@ -9,6 +9,7 @@ using System.Web.UI.WebControls.WebParts;
 using LogsManager.BLL;
 using LogsManager.Common;
 using LogsManager.DBUtility;
+using LogsManager.Model;
 using Maticsoft.Model;
 
 namespace LogsManager.Web
@@ -25,13 +26,14 @@ namespace LogsManager.Web
                 LinkButton1.Text = Request["AccountNum"];
                 AccountNum = Request["AccountNum"];
                 UserID = Request["UserID"];
+                GetUserInfo();
             }
 
             // 显示注销按钮
             if (LinkButton1.Text != "登录")
             {
                 LinkButton2.Visible = true;
-                LinkButton1.PostBackUrl = "UserDetail.aspx?UserID="+UserID;
+                LinkButton1.PostBackUrl = "UserDetail.aspx?UserID=" + UserID;
             }
 
             GetLogsList();
@@ -164,6 +166,19 @@ namespace LogsManager.Web
         {
             CookieHelper.ClearCookie("UserID");
             Response.Redirect("Login.aspx");
+        }
+
+        public void GetUserInfo()
+        {
+            Info_User_BLL infoUserBll = new Info_User_BLL();
+            Info_User_Model infoUserModel = new Info_User_Model();
+            infoUserModel = infoUserBll.GetModel(new Guid(UserID));
+            if (string.IsNullOrEmpty(infoUserModel.UserName) | string.IsNullOrEmpty(infoUserModel.UserSex.ToString()) |
+                string.IsNullOrEmpty(infoUserModel.UserPhone) | string.IsNullOrEmpty(infoUserModel.AccountNum) |
+                string.IsNullOrEmpty(infoUserModel.Pwd))
+            {
+                Response.Redirect("UserDetail.aspx?UserID=" + infoUserModel.UserID);
+            }
         }
     }
 }
