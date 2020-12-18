@@ -63,7 +63,6 @@
                 <asp:LinkButton ID="LinkButton2" runat="server" CssClass="btn btn-danger" OnClick="LinkButton2_OnClick">返回</asp:LinkButton>
             </div>
         </div>
-
     </div>
 </form>
 <script src="js/jquery-3.5.1.slim.min.js"></script>

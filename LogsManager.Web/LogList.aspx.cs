@@ -180,5 +180,6 @@ namespace LogsManager.Web
                 Response.Redirect("UserDetail.aspx?UserID=" + infoUserModel.UserID);
             }
         }
+        
     }
 }

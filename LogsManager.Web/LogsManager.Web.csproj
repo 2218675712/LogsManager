@@ -68,6 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="BasePage.aspx" />
+    <Content Include="Checked.aspx" />
     <Content Include="css\bootstrap.min.css" />
     <Content Include="js\bootstrap.bundle.min.js" />
     <Content Include="js\jquery-3.5.1.slim.min.js" />
@@ -84,6 +85,13 @@
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="BasePage.aspx.designer.cs" />
+    <Compile Include="Checked.aspx.cs">
+      <DependentUpon>Checked.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Checked.aspx.designer.cs">
+      <DependentUpon>Checked.aspx</DependentUpon>
+    </Compile>
     <Compile Include="LogDetail.aspx.cs">
       <DependentUpon>LogDetail.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
